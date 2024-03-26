@@ -9,6 +9,7 @@ from torch.utils.data import DataLoader
 from PIL import Image
 # from scipy.misc import imread
 from imageio import imread
+from skimage.transform import resize
 
 from skimage.feature import canny
 from skimage.color import rgb2gray, gray2rgb
@@ -167,7 +168,8 @@ class Dataset(torch.utils.data.Dataset):
             i = (imgw - side) // 2
             img = img[j:j + side, i:i + side, ...]
 
-        img = scipy.misc.imresize(img, [height, width])
+        # img = scipy.misc.imresize(img, [height, width])
+        img = resize(img, [height, width])
 
         return img
 
